@@ -44,6 +44,7 @@ class ChatClient:
     def get_nickname(self):
         # prompt window for nickname
         self.nickname_window = tk.Toplevel(self.screen)
+        self.nickname_window.geometry("350x120")
         self.nickname_window.attributes("-topmost", True)
         self.nickname_window.title("Enter Nickname")
         self.nickname_window.grab_set()
@@ -75,6 +76,7 @@ class ChatClient:
         self.nickname = self.nickname_entry.get().strip()
         self.sock.send(self.nickname.encode('utf-8'))
         self.nickname_window.destroy()
+        self.screen.attributes("-topmost", True)
         self.display_area.config(state='normal')
         self.display_area.insert(tk.END, f"Nickname set to: {self.nickname}\n")
         self.display_area.config(state='disabled')
